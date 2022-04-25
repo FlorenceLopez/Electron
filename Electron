@@ -1,0 +1,33 @@
+for path, dirs, files in os.walk(r"C:\exml\FND_GLS".format(type) ):
+for f in files:
+    clinical = os.path.join(path, f)
+    print(clinical)
+tree = ET.parse(clinical)
+root = tree.getroot()
+
+
+
+xmlstr = ET.tostring(root, encoding='utf-8', method='xml')
+
+data_dict = dict(xmltodict.parse(xmlstr))
+
+
+def write_json(target_path, target_file, data):
+if not os.path.exists(target_path):
+
+
+try:
+    
+
+os.makedirs(target_path)
+except Exception as e:
+print(e)
+   
+
+ raise
+with open(os.path.join(target_path, target_file), 'w') as f:
+
+
+data = json.dump(data_dict,f, sort_keys=False, indent=4)
+
+write_json('C:\ejson\FND_GLS_Json', 'my_json.json', 'data')
